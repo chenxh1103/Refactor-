@@ -19,39 +19,35 @@ public class Customer {
     }
 
     public String statement(){
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         Iterator rental = rentals.iterator();
         String result = "Rental record for " + getName() + "\n";
         while (rental.hasNext()){
-            double thisAmout = 0;
             Rental each = (Rental) rental.next();
-            switch (each.getMovie().getPriceCode()){
-                case  Movie.REGULAR:
-                thisAmout += 2;
-                if(each.getDaysRented() > 2){
-                    thisAmout = (each.getDaysRented() - 2) * 1.5;
-                }
-                break;
-                case Movie.NEW_RELEASE:
-                    thisAmout = each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmout += 1.5;
-                    if(each.getDaysRented() > 3){
-                        thisAmout += (each.getDaysRented() - 3) * 1.5;
-                    }
-                    break;
-            }
-            frequentRenterPoints ++ ;
-            if(each.getMovie().getPriceCode() == Movie.NEW_RELEASE && each.getDaysRented() > 1)
-                frequentRenterPoints ++;
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmout) + "\n";
-            totalAmount += thisAmout;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
         }
-        result += "Amount owed is" + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + "frequent renter points";
+        result += "Amount owed is" + String.valueOf(getTotalCharge()) + "\n";
+        result += "You earned " + String.valueOf(getgetFrequentRenterPoints()) + "frequent renter points";
         return result;
 
+    }
+
+    private double getTotalCharge(){
+        Iterator rental = rentals.iterator();
+        double result = 0;
+        while (rental.hasNext()){
+            Rental each = (Rental) rental.next();
+            result += each.getCharge();
+        }
+        return result;
+    }
+    
+    private int getgetFrequentRenterPoints(){
+        Iterator rental = rentals.iterator();
+        int result = 0;
+        while (rental.hasNext()){
+            Rental each = (Rental) rental.next();
+            result += each.getFrequentRenterPoints();
+        }
+        return result;
     }
 }
