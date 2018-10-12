@@ -25,8 +25,8 @@ public class Customer {
             Rental each = (Rental) rental.next();
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
         }
-        result += "Amount owed is" + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getgetFrequentRenterPoints()) + "frequent renter points";
+        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
+        result += "You earned " + String.valueOf(getgetFrequentRenterPoints()) + " frequent renter points";
         return result;
 
     }
@@ -40,7 +40,7 @@ public class Customer {
         }
         return result;
     }
-    
+
     private int getgetFrequentRenterPoints(){
         Iterator rental = rentals.iterator();
         int result = 0;
