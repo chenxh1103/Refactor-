@@ -43,5 +43,7 @@ public class MyLinkedListTest {
         for (int i=0;i<myList.size();i++){
             System.out.println(myList.get(i));
         }
+
+        List a = new LinkedList();
     }
 }

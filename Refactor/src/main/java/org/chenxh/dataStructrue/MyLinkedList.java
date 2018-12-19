@@ -1,6 +1,8 @@
 package org.chenxh.dataStructrue;
 
-public class MyLinkedList<E> implements  MyList<E>{
+import org.chenxh.dataStructrue.Iterable.MyIterator;
+
+public class MyLinkedList<E> implements MyList<E> {
 
     private Node<E> frist;
     private Node<E> last;
@@ -14,14 +16,14 @@ public class MyLinkedList<E> implements  MyList<E>{
     @Override
     public void add(E e) {
         Node<E> node = new Node<E>(e);
-        if(size == 0){
+        if (size == 0) {
             frist = node;
             last = node;
-        }else{
+        } else {
             last.setNext(node);
             last = node;
         }
-        size ++ ;
+        size++;
     }
 
     @Override
@@ -33,44 +35,48 @@ public class MyLinkedList<E> implements  MyList<E>{
 
     @Override
     public void remove(int index) {
-        if(index < 0 || index > this.size){
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException();
         }
-        if(index == 0){
-            if(frist == last){
+        if (index == 0) {
+            if (frist == last) {
                 frist = null;
                 last = null;
-            }else{
+            } else {
                 frist = frist.getNext();
             }
-        }else if(index == size - 1){
+        } else if (index == size - 1) {
             Node<E> node = frist;
-            while (node.getNext()!=last){
+            while (node.getNext() != last) {
                 node = node.getNext();
             }
             last = node;
-        }else {
+        } else {
             Node<E> node = frist;
             Node<E> pre = null;
-            for (int i = 1;i <= index;i++){
+            for (int i = 1; i <= index; i++) {
                 pre = node;
                 node = node.getNext();
             }
             pre.setNext(node.getNext());
         }
-        size --;
+        size--;
     }
 
     @Override
     public E get(int index) {
-        if(index < 0 || index > this.size){
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException();
         }
         Node<E> node = frist;
-        for (int i = 1;i <= index;i++){
+        for (int i = 1; i <= index; i++) {
             node = node.getNext();
         }
         return node.getE();
     }
 
+    @Override
+    public MyIterator<E> iteraror() {
+        return null;
+    }
 }
