@@ -9,8 +9,7 @@ public class TaoBao implements DocumentParser{
     private static final String url = "http://www.taobao.com";
 
     @Override
-    public void parserDocument(String documentString) {
-        Document document = Jsoup.parse(documentString);
+    public void parserDocument(Document document) {
         Elements elements = document.getElementsByClass("service J_Service");
         for (Element element:elements) {
             Elements a = element.getElementsByTag("a");

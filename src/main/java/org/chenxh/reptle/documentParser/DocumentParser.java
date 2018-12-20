@@ -1,6 +1,8 @@
 package org.chenxh.reptle.documentParser;
 
+import org.jsoup.nodes.Document;
+
 public interface DocumentParser {
 
-    public void parserDocument(String documentString);
+    void parserDocument(Document document);
 }

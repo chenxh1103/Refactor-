@@ -22,16 +22,20 @@ import java.util.List;
 import java.util.Map;
 
 public class HttpClientUtil {
-    public static final String UTF_8 = "UTF-8";
+    private static final String UTF_8 = "UTF-8";
+    private static final String EMPTY  = "";
 
+    public static Document doPost(String url, Map<String,Object> param){
+        return doPost(url,param,UTF_8);
+    }
 
-    public static void doPost(String url, Map<String,Object> param, String charset){
+    public static Document doPost(String url, Map<String,Object> param, String charset){
         HttpClient httpClient = HttpClientBuilder.create().build();
         HttpPost httpPost = new HttpPost(url);
         try {
             if(param != null){
                 //设置参数
-                List<NameValuePair> list = new ArrayList<NameValuePair>();
+                List<NameValuePair> list = new ArrayList();
                 for (Map.Entry<String,Object> entry : param.entrySet()) {
                     list.add(new BasicNameValuePair(entry.getKey(),String.valueOf(entry.getValue())));
                 }
@@ -39,14 +43,16 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);
             }
             HttpResponse httpResponse = httpClient.execute(httpPost);
-            String result = EntityUtils.toString(httpResponse.getEntity(),UTF_8);
+            return Jsoup.parse(EntityUtils.toString(httpResponse.getEntity(),UTF_8));
         }catch (Exception e){
-
+            //TODO
         }
+        return Jsoup.parse(EMPTY);
     }
     //https://www.zhihu.com/node/ExploreRecommendListV2
     public static void main(String[] args) {
-
+        Document a = Jsoup.parse(EMPTY);
+        int b =1;
     }
 
 }
