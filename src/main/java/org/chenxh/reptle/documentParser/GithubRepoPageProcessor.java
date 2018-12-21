@@ -1,23 +1,28 @@
 package org.chenxh.reptle.documentParser;
 
+import org.apache.log4j.Logger;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.monitor.SpiderMonitor;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 public class GithubRepoPageProcessor implements PageProcessor{
+    private static Logger log = Logger.getLogger(GithubRepoPageProcessor.class.getClass());
+
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
 
     @Override
     public void process(Page page) {
-        page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/\\w+/\\w+)").all());
-        page.putField("author", page.getUrl().regex("https://github\\.com/(\\w+)/.*").toString());
-        page.putField("name", page.getHtml().xpath("//h1[@class='entry-title public']/strong/a/text()").toString());
-        if (page.getResultItems().get("name")==null){
-            //skip this page
-            page.setSkip(true);
+        Elements elements = page.getHtml().getDocument().getElementsByClass("service J_Service");
+        for (Element element:elements) {
+            Elements a = element.getElementsByTag("a");
+            for(Element element1:a){
+                System.out.println(element1.html()+"------"+element1.attributes().get("href"));
+            }
         }
-        page.putField("readme", page.getHtml().xpath("//div[@id='readme']/tidyText()"));
     }
 
     @Override
@@ -25,7 +30,10 @@ public class GithubRepoPageProcessor implements PageProcessor{
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/code4craft").thread(5).run();
+    public static void main(String[] args) throws Exception  {
+
+        Spider spider = Spider.create(new GithubRepoPageProcessor()).addUrl("http://www.taobao.com");
+        SpiderMonitor.instance().register(spider);
+        spider.start();
     }
 }

@@ -29,7 +29,7 @@ public class HttpClientUtil {
         try {
             if(param != null){
                 //设置参数
-                List<NameValuePair> list = new ArrayList();
+                List<NameValuePair> list = new ArrayList<>();
                 for (Map.Entry<String,Object> entry : param.entrySet()) {
                     list.add(new BasicNameValuePair(entry.getKey(),String.valueOf(entry.getValue())));
                 }
@@ -43,10 +43,4 @@ public class HttpClientUtil {
         }
         return Jsoup.parse(EMPTY);
     }
-    //https://www.zhihu.com/node/ExploreRecommendListV2
-    public static void main(String[] args) {
-        Document a = Jsoup.parse(EMPTY);
-        int b =1;
-    }
-
 }
