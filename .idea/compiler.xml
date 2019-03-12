@@ -9,7 +9,7 @@
         <module name="Refactor" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="Refactor" target="11" />
     </bytecodeTargetLevel>
   </component>
