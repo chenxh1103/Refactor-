@@ -51,7 +51,14 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.1.5.RELEASE</version>
+    </dependency>
 
+<<<<<<< HEAD
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -60,6 +67,20 @@
     </dependency>
 
 
+=======
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.1.5.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.38</version>
+    </dependency>
+>>>>>>> 92d63fc7bd15d8d1a171cb8d6ffa6c41b5a27876
   </dependencies>
 
   <build>
