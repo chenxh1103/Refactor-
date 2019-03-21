@@ -13,7 +13,7 @@
     <!-- 1、配置映射器与适配器 -->
     <mvc:annotation-driven />
 
-    <context:component-scan base-package="org.chenxh.web.controller"></context:component-scan>
+    <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
 
     <!-- 2、视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

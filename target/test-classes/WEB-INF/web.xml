@@ -12,37 +12,15 @@
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
     </context-param>
-<<<<<<< HEAD
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
-    </context-param>
-    <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-=======
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>Refactor</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:refactor-servlet.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Refactor</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
->>>>>>> 92d63fc7bd15d8d1a171cb8d6ffa6c41b5a27876
 </web-app>
