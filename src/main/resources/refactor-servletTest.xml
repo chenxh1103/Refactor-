@@ -15,7 +15,7 @@
     <mvc:annotation-driven />
 -->
 
-    <context:component-scan base-package="org.chenxh.web.controller"></context:component-scan>
+    <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
 
 <!--    &lt;!&ndash; 2、视图解析器 &ndash;&gt;
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

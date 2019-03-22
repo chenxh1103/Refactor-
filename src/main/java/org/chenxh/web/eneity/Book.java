@@ -1,23 +1,24 @@
 package org.chenxh.web.eneity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.List;
-@TableName("sys_book")
+@TableName("Book")
 public class Book {
-    @TableField(el = "id")
-    private String bookId;
+    @TableId
+    private int bookId;
     private String bookName;
     private String author;
     @TableField(exist = false)
     private List<Chapter> chapters;
 
-    public String getBookId() {
+    public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(String bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 

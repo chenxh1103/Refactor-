@@ -1,15 +1,26 @@
 package org.chenxh.web.eneity;
 
-public class Chapter {
-    private String bookId;
-    private String title;
-    private String contenxt;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-    public String getBookId() {
+@TableName(value = "Chapter")
+public class Chapter {
+    @TableId
+    private int bookId;
+    private String title;
+    private String contenxt1;
+    private String contenxt2;
+    private String contenxt3;
+    private String contenxt4;
+    private String contenxt5;
+    private String ext1;
+    private String ext2;
+    private String ext3;
+    public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(String bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 
@@ -21,11 +32,77 @@ public class Chapter {
         this.title = title;
     }
 
-    public String getContenxt() {
-        return contenxt;
+    public String getContenxt1() {
+        return contenxt1;
     }
 
-    public void setContenxt(String contenxt) {
-        this.contenxt = contenxt;
+    public void setContenxt1(String contenxt1) {
+        this.contenxt1 = contenxt1;
+    }
+
+    public String getContenxt2() {
+        return contenxt2;
+    }
+
+    public void setContenxt2(String contenxt2) {
+        this.contenxt2 = contenxt2;
+    }
+
+    public String getContenxt3() {
+        return contenxt3;
+    }
+
+    public void setContenxt3(String contenxt3) {
+        this.contenxt3 = contenxt3;
+    }
+
+    public String getContenxt4() {
+        return contenxt4;
+    }
+
+    public void setContenxt4(String contenxt4) {
+        this.contenxt4 = contenxt4;
+    }
+
+    public String getContenxt5() {
+        return contenxt5;
+    }
+
+    public void setContenxt5(String contenxt5) {
+        this.contenxt5 = contenxt5;
+    }
+
+    public String getExt1() {
+        return ext1;
+    }
+
+    public void setExt1(String ext1) {
+        this.ext1 = ext1;
+    }
+
+    public String getExt2() {
+        return ext2;
+    }
+
+    public void setExt2(String ext2) {
+        this.ext2 = ext2;
+    }
+
+    public String getExt3() {
+        return ext3;
+    }
+
+    public void setExt3(String ext3) {
+        this.ext3 = ext3;
+    }
+
+    public String getContenxt(){
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(getContenxt1()).append(getContenxt2())
+                .append(getContenxt3()).append(getContenxt4()).append(getContenxt5());
+        return stringBuffer.toString();
+    }
+    public void setContenxt(String contenxt){
+        //TODO
     }
 }
