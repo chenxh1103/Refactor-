@@ -15,7 +15,7 @@
     <mvc:annotation-driven />
 -->
 
-    <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
+    <context:component-scan base-package="org.chenxh.*"></context:component-scan>
 
 <!--    &lt;!&ndash; 2、视图解析器 &ndash;&gt;
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -40,6 +40,7 @@
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="globalConfig" ref="globalConfig"/>
+        <property name="typeEnumsPackage" value="org.chenxh.web.enums"/> <!--枚举配置-->
         <property name="plugins">
             <array>
                 <bean class="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor"></bean>

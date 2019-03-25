@@ -20,5 +20,14 @@ public class ChapterServiceTest extends AbstractTest {
         int size = chapterService.insertChapter(chapter);
         Assert.assertEquals(1,size);
     }
+    @Test
+    public void contenxt(){
+        Chapter chapter = new Chapter();
+        chapter.setBookId(1);
+        chapter.setTitle("第一章");
+        chapter.setContenxt("123");
+
+    }
+
 
 }

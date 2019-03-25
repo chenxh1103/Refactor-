@@ -29,4 +29,11 @@ public class BookServiceTest {
         int result = bookService.deleteBook(book);
         Assert.assertEquals(1,result);
     }
+    @Test
+    public void selectBook(){
+        Book book = new Book();
+        book.setBookId(1116);
+        Book selectBook = bookService.selectBook(book);
+        Assert.assertNotNull(selectBook);
+    }
 }

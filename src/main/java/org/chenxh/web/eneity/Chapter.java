@@ -3,10 +3,13 @@ package org.chenxh.web.eneity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.lang.reflect.Method;
+
 @TableName(value = "Chapter")
 public class Chapter {
     @TableId
     private int bookId;
+    private int sortId;
     private String title;
     private String contenxt1;
     private String contenxt2;
@@ -22,6 +25,14 @@ public class Chapter {
 
     public void setBookId(int bookId) {
         this.bookId = bookId;
+    }
+
+    public int getSortId() {
+        return sortId;
+    }
+
+    public void setSortId(int sortId) {
+        this.sortId = sortId;
     }
 
     public String getTitle() {
@@ -102,7 +113,21 @@ public class Chapter {
                 .append(getContenxt3()).append(getContenxt4()).append(getContenxt5());
         return stringBuffer.toString();
     }
+    private static final int SPLITE_LENGTH = 2000;
     public void setContenxt(String contenxt){
-        //TODO
+        StringBuffer meta = new StringBuffer(contenxt);
+        char[] buf = meta.toString().toCharArray();
+        int splitNode = 0;
+        int index = 1;
+        try {
+            while (splitNode < meta.length()){
+                Method method = Chapter.class.getMethod("setContenxt"+index, String.class);
+                method.invoke(this,new String(buf,splitNode,SPLITE_LENGTH));
+                index++;
+                splitNode+=SPLITE_LENGTH;
+            }
+        }catch (Exception e){
+
+        }
     }
 }

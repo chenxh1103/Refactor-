@@ -1,40 +1,38 @@
-package org.chenxh.reptle.documentParser;
+package org.chenxh.reptle.documentParser.biQuGe;
 
-import org.chenxh.reptle.pipeline.BiQuGeFilePipeline;
 import org.chenxh.web.eneity.Book;
+import org.chenxh.web.enums.BookState;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.List;
 
 public class BiQuGePageProcessor implements PageProcessor {
-    private final static Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
+    private final static Site site = Site.me().setTimeOut(3000).setRetryTimes(3).setSleepTime(1000);
     private Book book = new Book();
 
     @Override
     public void process(Page page) {
-        List<Selectable> nodes = page.getHtml().xpath("//*[@class=\"listmain\"]//d1").nodes();
-        Selectable fristNode = null;
+        List<Selectable> nodes = page.getHtml().xpath("//*[@class=\"listmain\"]//dl/").nodes();
         for(int i=0;i<nodes.size();i++){
-            String html = nodes.get(0).xpath("/text()").toString();
-            html.contains("正文卷");
-            fristNode = nodes.get(i+1);
-            break;
+            String html = nodes.get(i).get();
+            if(html.contains("正文卷")){
+                Selectable fristNode = nodes.get(i+1);
+                //page.putField("url","https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
+                book.setExt1("https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
+                book.setExt2(page.getUrl().toString().replaceAll("https://www.sbiquge.com",""));
+                break;
+            }
         }
-        String fristChapterUrl = fristNode.xpath("//a/@href").toString();
         String bookName = page.getHtml().xpath("//*[@id=\"info\"]//h1/text()").toString();
-        String author = page.getHtml().xpath("//*[@id=\"info\"]//p").nodes().get(0).xpath("text()").toString();
-        /*        charpUrl.forEach((url)-> {Request request = new Request();
-            request.setUrl(page.getUrl().toString()+url);
-            request.setMethod(HttpConstant.Method.GET);
-            page.addTargetRequest(request);});*/
+        String author =  page.getHtml().xpath("//*[@id=\"info\"]//p[1]/text()").toString().substring(4);
+        String bookState =  page.getHtml().xpath("//*[@id=\"info\"]//p[2]/text()").toString().substring(4);
         book.setBookName(bookName);
         book.setAuthor(author);
+        book.setBookState(BookState.valueOfDesc(bookState));
         page.putField("book",book);
-        page.putField("url",fristChapterUrl);
     }
 
     @Override
@@ -42,13 +40,6 @@ public class BiQuGePageProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider.create(new BiQuGePageProcessor())
-                .addUrl("https://www.sbiquge.com/31_31715")//遮天抓包
-                .addPipeline(new BiQuGeFilePipeline())
-                .run();
-
-    }
 }
 /*
     Object s0 =page.getHtml().xpath("//div[@class='detail-wrapper']//div[@class='header ']/a/img/@src")

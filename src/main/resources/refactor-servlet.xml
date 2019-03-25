@@ -13,13 +13,13 @@
     <!-- 1、配置映射器与适配器 -->
     <mvc:annotation-driven />
 
-    <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
-
     <!-- 2、视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <context:component-scan base-package="org.chenxh.*"></context:component-scan>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
@@ -38,6 +38,7 @@
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="globalConfig" ref="globalConfig"/>
+        <property name="typeEnumsPackage" value="org.chenxh.web.enums"/> <!--枚举配置-->
         <property name="plugins">
             <array>
                 <bean class="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor"></bean>
@@ -65,4 +66,8 @@
         <property name="basePackage" value="org.chenxh.web.mapper"/>
     </bean>
 
+
+<!--    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>-->
 </beans>
