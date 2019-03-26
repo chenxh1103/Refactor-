@@ -1,7 +1,7 @@
 package org.chenxh.web.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.chenxh.web.eneity.Book;
+import org.chenxh.web.entity.Book;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -3,6 +3,7 @@ package org.chenxh.web.factory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,6 +22,9 @@ public class SpringServiceFactory implements ApplicationContextAware {
      * 获取applicationContext
      */
     public static ApplicationContext getApplicationContext() {
+        if(SpringServiceFactory.applicationContext == null){
+            SpringServiceFactory.applicationContext = new ClassPathXmlApplicationContext("classpath:refactor-servletTest.xml");
+        }
         return applicationContext;
     }
 

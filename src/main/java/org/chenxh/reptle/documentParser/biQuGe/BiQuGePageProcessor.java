@@ -1,6 +1,6 @@
 package org.chenxh.reptle.documentParser.biQuGe;
 
-import org.chenxh.web.eneity.Book;
+import org.chenxh.web.entity.Book;
 import org.chenxh.web.enums.BookState;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -11,7 +11,6 @@ import java.util.List;
 
 public class BiQuGePageProcessor implements PageProcessor {
     private final static Site site = Site.me().setTimeOut(3000).setRetryTimes(3).setSleepTime(1000);
-    private Book book = new Book();
 
     @Override
     public void process(Page page) {
@@ -21,14 +20,16 @@ public class BiQuGePageProcessor implements PageProcessor {
             if(html.contains("正文卷")){
                 Selectable fristNode = nodes.get(i+1);
                 //page.putField("url","https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
-                book.setExt1("https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
-                book.setExt2(page.getUrl().toString().replaceAll("https://www.sbiquge.com",""));
+                //book.setExt1("https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
+                //book.setExt2(page.getUrl().toString().replaceAll("https://www.sbiquge.com",""));
+                page.putField("url","https://www.sbiquge.com"+fristNode.xpath("//*/a/@href").toString());
                 break;
             }
         }
         String bookName = page.getHtml().xpath("//*[@id=\"info\"]//h1/text()").toString();
         String author =  page.getHtml().xpath("//*[@id=\"info\"]//p[1]/text()").toString().substring(4);
         String bookState =  page.getHtml().xpath("//*[@id=\"info\"]//p[2]/text()").toString().substring(4);
+        Book book = new Book();
         book.setBookName(bookName);
         book.setAuthor(author);
         book.setBookState(BookState.valueOfDesc(bookState));

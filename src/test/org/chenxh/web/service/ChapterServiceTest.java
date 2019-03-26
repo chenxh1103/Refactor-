@@ -1,7 +1,9 @@
 package org.chenxh.web.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.chenxh.AbstractTest;
-import org.chenxh.web.eneity.Chapter;
+import org.chenxh.web.entity.Chapter;
+import org.chenxh.web.factory.SpringServiceFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,8 @@ public class ChapterServiceTest extends AbstractTest {
     }
     @Test
     public void contenxt(){
-        Chapter chapter = new Chapter();
-        chapter.setBookId(1);
-        chapter.setTitle("第一章");
-        chapter.setContenxt("123");
-
+        ChapterService chapterService = SpringServiceFactory.getBean(ChapterService.class);
+        Chapter chapter = chapterService.getOne(new QueryWrapper<Chapter>().orderByDesc("sort_id").eq("book_id",1122));
     }
 
 

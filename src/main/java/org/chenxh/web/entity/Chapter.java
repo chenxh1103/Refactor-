@@ -1,13 +1,11 @@
-package org.chenxh.web.eneity;
+package org.chenxh.web.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.lang.reflect.Method;
 
 @TableName(value = "Chapter")
 public class Chapter {
-    @TableId
     private int bookId;
     private int sortId;
     private String title;

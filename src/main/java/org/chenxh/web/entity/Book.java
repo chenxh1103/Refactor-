@@ -1,14 +1,15 @@
-package org.chenxh.web.eneity;
+package org.chenxh.web.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import org.chenxh.web.enums.BookState;
 
 import java.util.List;
+
+//CREATE SEQUENCE IF NOT EXISTS SEQ_BOOK START WITH 1 INCREMENT BY 1;
+//@KeySequence("SEQ_BOOK")
 @TableName("Book")
 public class Book {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private int bookId;
     private String bookName;
     private String author;

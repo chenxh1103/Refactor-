@@ -1,6 +1,7 @@
-package org.chenxh.web.serviceImpl;
+package org.chenxh.web.service.impl;
 
-import org.chenxh.web.eneity.Chapter;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.chenxh.web.entity.Chapter;
 import org.chenxh.web.mapper.ChapterMapper;
 import org.chenxh.web.service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ChapterServiceImpl implements ChapterService {
+public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> implements ChapterService {
     @Autowired
     private ChapterMapper chapterMapper;
 
@@ -21,5 +22,10 @@ public class ChapterServiceImpl implements ChapterService {
     @Override
     public int insertChapter(Chapter chapter) {
         return chapterMapper.insert(chapter);
+    }
+
+    @Override
+    public int selectMaxSortIdByBookId(int bookId) {
+        return chapterMapper.selectMaxSortIdByBookId(bookId);
     }
 }

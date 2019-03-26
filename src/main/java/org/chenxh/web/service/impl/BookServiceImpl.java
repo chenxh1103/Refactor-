@@ -1,7 +1,7 @@
-package org.chenxh.web.serviceImpl;
+package org.chenxh.web.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.chenxh.web.eneity.Book;
+import org.chenxh.web.entity.Book;
 import org.chenxh.web.mapper.BookMapper;
 import org.chenxh.web.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;

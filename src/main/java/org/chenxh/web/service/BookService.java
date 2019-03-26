@@ -1,6 +1,6 @@
 package org.chenxh.web.service;
 
-import org.chenxh.web.eneity.Book;
+import org.chenxh.web.entity.Book;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

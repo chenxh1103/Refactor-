@@ -1,6 +1,7 @@
 package org.chenxh.web.service;
 
-import org.chenxh.web.eneity.Book;
+import org.chenxh.web.entity.Book;
+import org.chenxh.web.enums.BookState;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,9 @@ public class BookServiceTest {
         Book book = new Book();
         book.setAuthor("陈");
         book.setBookName("人");
+        book.setBookState(BookState.Serial);
         int result = bookService.insertBook(book);
+        int a = book.getBookId();
         Assert.assertEquals(1,result);
     }
     @Test

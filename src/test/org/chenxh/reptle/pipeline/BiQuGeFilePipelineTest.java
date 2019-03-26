@@ -1,12 +1,12 @@
 package org.chenxh.reptle.pipeline;
 
 import org.chenxh.AbstractTest;
+import org.chenxh.reptle.documentParser.biQuGe.BiQuGeChapterPageProcessor;
 import org.chenxh.reptle.documentParser.biQuGe.BiQuGePageProcessor;
-import org.chenxh.web.factory.SpringServiceFactory;
-import org.chenxh.web.eneity.Book;
-import org.chenxh.web.service.BookService;
 import org.junit.Test;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.utils.HttpConstant;
 
 public class BiQuGeFilePipelineTest extends AbstractTest {
 
@@ -18,11 +18,14 @@ public class BiQuGeFilePipelineTest extends AbstractTest {
                 .run();
     }
     @Test
-    public void t(){
-        Book book = new Book();
-        book.setBookId(1);
-        book.setBookName("chenxh");
-        BookService bookService = SpringServiceFactory.getBean(BookService.class);
-        bookService.selectBook(book);
+    public void BiQuGeChapterTest(){
+        String lastReplatUrl = "https://www.sbiquge.com/31_31715/18971814.html";
+        Request request = new Request();
+        request.setUrl(lastReplatUrl);
+        request.setMethod(HttpConstant.Method.GET);
+        Spider.create(new BiQuGeChapterPageProcessor(1122,lastReplatUrl))
+                .addRequest(request)
+                .addPipeline(new BiQuGeChapterFilePipeline())
+                .run();
     }
 }
