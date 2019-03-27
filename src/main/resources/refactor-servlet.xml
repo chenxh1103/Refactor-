@@ -19,7 +19,7 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <context:component-scan base-package="org.chenxh.*"></context:component-scan>
+    <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
@@ -34,6 +34,14 @@
         <property name="password" value="${jdbc.password}" />
     </bean>
 
+    <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
+        <property name="dbConfig" ref="dbConfig"/>
+    </bean>
+
+    <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig">
+        <property name="keyGenerator" ref="keyGenerator"/>
+    </bean>
+
     <!-- SqlSessionFactory Config -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -46,13 +54,7 @@
         </property>
     </bean>
 
-    <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
-        <property name="dbConfig" ref="dbConfig"/>
-    </bean>
 
-    <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig">
-        <property name="keyGenerator" ref="keyGenerator"/>
-    </bean>
 
     <bean id="keyGenerator" class="com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator"/>
 
