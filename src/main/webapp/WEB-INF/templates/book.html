@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>书籍</title>
+    </head>
+    <body>
+    <h1>Spring MVC + Thymeleaf Hello World example</h1>
+        <p th:text="${msg}">Red Chair</p>
+        <p th:utext="#{home.welcome(${msg})}+${msg}">Welcome to our grocery store!</p>
+        <p th:utext="${#locale.country}">country</p>
+        <p th:utext="${#ctx.date}">ctx</p>
+        <p th:utext="${#dates}">dates</p>
+    </body>
+</html>

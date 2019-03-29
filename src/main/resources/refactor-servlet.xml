@@ -14,10 +14,48 @@
     <mvc:annotation-driven />
 
     <!-- 2、视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ <!--   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
+    </bean>-->
+
+    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML5" />
+        <property name="cacheable" value="false" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+        <property name="enableSpringELCompiler" value="false" />
+    </bean>
+
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <!--设置解析编码格式-->
+        <property name="characterEncoding" value ="UTF-8" />
+        <!--设置是否缓存html-->
+        <property name="cache" value ="false" />
+    </bean>
+
+    <!-- 配置国际化资源文件 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n.message"></property>
+        <!-- value="Messages" -properties文件的路径，该类里会自动带后缀  .properties -->
+        <!--编码设置-->
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
+    <!-- 以下配置是用于通过按钮更换语言locale时,说需要用到的 -->
+    <!-- 配置SessionLocalResolver -->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+    <!-- 配置localchannceinterceptor -->
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">  </bean>
+    </mvc:interceptors>
 
     <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>
 
@@ -26,7 +64,7 @@
             <value>classpath:database.properties</value>
         </property>
     </bean>
-
+    <!--数据库链接配置-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}" />
         <property name="url" value="${jdbc.url}" />
@@ -41,7 +79,6 @@
     <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig">
         <property name="keyGenerator" ref="keyGenerator"/>
     </bean>
-
     <!-- SqlSessionFactory Config -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

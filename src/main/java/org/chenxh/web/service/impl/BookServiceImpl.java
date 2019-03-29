@@ -16,7 +16,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book selectBookByBookId(String id) {
-        return bookMapper.selectOne(new QueryWrapper<Book>().eq("id",id));
+        return bookMapper.selectById(id);
     }
 
     @Override
