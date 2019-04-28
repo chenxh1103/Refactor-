@@ -12,7 +12,8 @@
     <!-- 启用spring mvc 注解 -->
     <!-- 1、配置映射器与适配器 -->
 <!--
-    <mvc:annotation-driven />
+//username:root;
+//password:luofei235123@@00
 -->
 
     <context:component-scan base-package="org.chenxh.web.*"></context:component-scan>

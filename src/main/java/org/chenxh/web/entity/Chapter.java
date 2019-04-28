@@ -41,43 +41,43 @@ public class Chapter {
         this.title = title;
     }
 
-    public String getContenxt1() {
+    private String getContenxt1() {
         return contenxt1;
     }
 
-    public void setContenxt1(String contenxt1) {
+    private void setContenxt1(String contenxt1) {
         this.contenxt1 = contenxt1;
     }
 
-    public String getContenxt2() {
+    private String getContenxt2() {
         return contenxt2;
     }
 
-    public void setContenxt2(String contenxt2) {
+    private void setContenxt2(String contenxt2) {
         this.contenxt2 = contenxt2;
     }
 
-    public String getContenxt3() {
+    private String getContenxt3() {
         return contenxt3;
     }
 
-    public void setContenxt3(String contenxt3) {
+    private void setContenxt3(String contenxt3) {
         this.contenxt3 = contenxt3;
     }
 
-    public String getContenxt4() {
+    private String getContenxt4() {
         return contenxt4;
     }
 
-    public void setContenxt4(String contenxt4) {
+    private void setContenxt4(String contenxt4) {
         this.contenxt4 = contenxt4;
     }
 
-    public String getContenxt5() {
+    private String getContenxt5() {
         return contenxt5;
     }
 
-    public void setContenxt5(String contenxt5) {
+    private void setContenxt5(String contenxt5) {
         this.contenxt5 = contenxt5;
     }
 

@@ -15,4 +15,5 @@ public interface ChapterService extends IService<Chapter> {
 
     int selectMaxSortIdByBookId(int bookId);
 
+    Chapter selectChapterByBookIdAndSortId(String bookId,String sortId);
 }

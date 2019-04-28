@@ -1,5 +1,6 @@
 package org.chenxh.web.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.chenxh.web.entity.Chapter;
 import org.chenxh.web.mapper.ChapterMapper;
@@ -28,4 +29,11 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     public int selectMaxSortIdByBookId(int bookId) {
         return chapterMapper.selectMaxSortIdByBookId(bookId);
     }
+
+    @Override
+    public Chapter selectChapterByBookIdAndSortId(String bookId, String sortId) {
+        return  chapterMapper.selectOne(new QueryWrapper<Chapter>()
+                .eq("book_id",bookId).eq("sort_id",sortId));
+    }
+
 }

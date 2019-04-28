@@ -19,7 +19,7 @@ public class BiQuGeFilePipelineTest extends AbstractTest {
     }
     @Test
     public void BiQuGeChapterTest(){
-        String lastReplatUrl = "https://www.sbiquge.com/31_31715/18971814.html";
+        String lastReplatUrl = "https://www.sbiquge.com/31_31715/19302891.html";
         Request request = new Request();
         request.setUrl(lastReplatUrl);
         request.setMethod(HttpConstant.Method.GET);
