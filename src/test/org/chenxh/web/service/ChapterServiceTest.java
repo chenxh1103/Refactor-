@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
+
 public class ChapterServiceTest extends AbstractTest {
     @Autowired
     private ChapterService chapterService;
@@ -17,6 +19,7 @@ public class ChapterServiceTest extends AbstractTest {
         Chapter chapter = new Chapter();
         chapter.setBookId(1);
         chapter.setTitle("第一章");
+        chapter.setCreateTime(new Date());
         chapter.setContenxt("test1");
         int size = chapterService.insertChapter(chapter);
         Assert.assertEquals(1,size);

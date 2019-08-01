@@ -1,14 +1,18 @@
 package org.chenxh.web.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.log4j.helpers.LogLog;
 
 import java.lang.reflect.Method;
+import java.util.Date;
 
 @TableName(value = "Chapter")
 public class Chapter {
     private int bookId;
     private int sortId;
     private String title;
+    private Date createTime;
     private String contenxt1;
     private String contenxt2;
     private String contenxt3;
@@ -17,6 +21,20 @@ public class Chapter {
     private String ext1;
     private String ext2;
     private String ext3;
+
+    public Chapter() {
+        this.setCreateTime(new Date());
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     public int getBookId() {
         return bookId;
     }
@@ -77,7 +95,7 @@ public class Chapter {
         return contenxt5;
     }
 
-    private void setContenxt5(String contenxt5) {
+    public void setContenxt5(String contenxt5) {
         this.contenxt5 = contenxt5;
     }
 
@@ -119,13 +137,17 @@ public class Chapter {
         int index = 1;
         try {
             while (splitNode < meta.length()){
-                Method method = Chapter.class.getMethod("setContenxt"+index, String.class);
-                method.invoke(this,new String(buf,splitNode,SPLITE_LENGTH));
+                Method method = Chapter.class.getDeclaredMethod("setContenxt"+index, String.class);
+                int sub = SPLITE_LENGTH;
+                if((meta.length()-(index*SPLITE_LENGTH)) < 0){
+                    sub = meta.length() - (index-1)*SPLITE_LENGTH;
+                }
+                method.invoke(this,new String(buf,splitNode,sub));
                 index++;
                 splitNode+=SPLITE_LENGTH;
             }
         }catch (Exception e){
-
+            LogLog.error("章节内容转换失败："+contenxt);
         }
     }
 }
