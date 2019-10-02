@@ -22,7 +22,7 @@
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>-->
-
+    <!--thymeleaf 视图配置-->
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
         <property name="suffix" value=".html" />

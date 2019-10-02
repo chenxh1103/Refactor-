@@ -51,7 +51,6 @@ public class BiQuGeChapterPageProcessor implements PageProcessor {
     @Override
     public void process(Page page) {
         String nextChapterUrl = "https://www.sbiquge.com"+page.getHtml().xpath("//div[@class='page_chapter']//li[3]/a/@href").toString();
-        Chapter chapter = new Chapter();
         if(nextChapterUrl.endsWith(".html")){
             //如果还有下一章
             Request request = new Request();
@@ -65,6 +64,7 @@ public class BiQuGeChapterPageProcessor implements PageProcessor {
         }
         String title = page.getHtml().xpath("//div[@id='book']//div[@class='content']/h1/text()").toString();
         String context = page.getHtml().xpath("//div[@id='content']/html()").toString();
+        Chapter chapter = new Chapter();
         chapter.setBookId(this.getBookId());
         sortIdIncrement();//sortId自增
         chapter.setSortId(this.getSortId());
