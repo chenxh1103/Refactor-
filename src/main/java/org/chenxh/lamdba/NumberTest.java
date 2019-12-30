@@ -14,7 +14,7 @@ public class NumberTest {
     }
     public void lambda(){
         Number number = (a,b)->{int c = a+b;System.out.println(c);return c;};
-        var value = number.add(1,4);
+        int value = number.add(1,4);
         System.out.println(value);
         Thread thread = new Thread(()->{int c =4;System.out.println(c);});
         thread.start();
