@@ -19,7 +19,7 @@ public class Subject implements Observerable{
 
     public void notifyObserver() {
         for (Observer observer:this.getObserverList()) {
-            observer.update();
+            observer.update(this);
         }
     }
 }
