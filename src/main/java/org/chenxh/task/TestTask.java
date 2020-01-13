@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TestTask {
-    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
+    //@Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
     public void task(){
         System.out.println("这是task测试");
     }
