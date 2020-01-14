@@ -2,6 +2,7 @@ package org.chenxh.task;
 
 import org.chenxh.reptle.documentParser.biQuGe.BiQuGeChapterPageProcessor;
 import org.chenxh.reptle.pipeline.BiQuGeChapterFilePipeline;
+import org.chenxh.task.lock.RedisLock;
 import org.chenxh.web.entity.BookReptileBreak;
 import org.chenxh.web.factory.SpringServiceFactory;
 import org.chenxh.web.service.IBookReptileBreakService;
@@ -14,7 +15,8 @@ import us.codecraft.webmagic.utils.HttpConstant;
 import java.util.List;
 @Component
 public class BiQuGeTask {
-    @Scheduled(cron = "* 0/5 14,15 * * ? ")// 每天下午14点至15点每5分执行一次
+    @RedisLock(lockKey = "BiQuGeKey" ,lockPrefix = "BiQuGePre",timeOut = 60)
+    @Scheduled(cron = "* 0/5 * * * ? ")// 每天下午14点至15点每5分执行一次
     public void task(){
         IBookReptileBreakService bookReptileBreakService = SpringServiceFactory.getBean(IBookReptileBreakService.class);
         List<BookReptileBreak> list = bookReptileBreakService.list();

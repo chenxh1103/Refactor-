@@ -1,11 +1,13 @@
 package org.chenxh.task;
 
+import org.chenxh.task.lock.RedisLock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TestTask {
-    //@Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
+    /*@RedisLock(lockKey = "testKey" ,lockPrefix = "testPre",timeOut = 3)
+    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行*/
     public void task(){
         System.out.println("这是task测试");
     }
